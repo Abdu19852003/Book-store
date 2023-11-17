@@ -4,16 +4,21 @@ import "./Book.css"
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+
+
+
 const Book = (props) => {
 const history=useNavigate()
 const{_id, name, author, description, price, image}=props.book;
-const deleteHandler=async()=>{
-     await axios.delete(`http://localhost:6500/books/${_id}`)
-      .then(res=>res.data)
-      .then(()=>history("/"))
-      .then(()=>history("/books"))
-
-    }
+const deleteHandler = async () => {
+  await axios.delete(`/books/${_id}`)
+    .then(res => res.data)
+    .then(() => {
+      // Hier wird die setBooks-Funktion aus der übergebenen Prop verwendet
+      props.onBookDelete(_id);
+    })
+    .then(() => history("/books"))
+}
 
   return <div className='card'> 
 

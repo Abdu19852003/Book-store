@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Box, Checkbox, FormControlLabel, FormLabel, TextField } from '@mui/material'
 import { Button } from '@mui/material';
 
+
 const BookDetail = () => {
     const [inputs,setInputs]=useState({})
     const id=useParams().id
@@ -14,14 +15,14 @@ const BookDetail = () => {
     useEffect(()=>{
         const fetchHandler=async()=>{
             await axios
-            .get(`http://localhost:6500/books/${id}`)
+            .get(`/books/${id}`)
             .then((res)=>res.data).then(data=>setInputs(data.book))
         }
         fetchHandler()
     },[id])
 
     const sendRequest= async()=>{
-        await axios.put(`http://localhost:6500/books/${id}`,{
+        await axios.put(`/books/${id}`,{
             name:String(inputs.name),
       author:String(inputs.author),
       description:String(inputs.description),

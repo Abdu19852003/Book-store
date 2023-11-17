@@ -88,10 +88,10 @@ return res.status(200).json({book})
         const id=req.params.id;
         let book;
     try {
-        book=await Book.findByIdAndDelete(id
+        book=await Book.findByIdAndDelete(id )
         
 
-    )
+   
    
 } catch (error) {
     console.log(error);

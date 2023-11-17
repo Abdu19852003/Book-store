@@ -5,6 +5,7 @@ import axios from "axios"
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+
 const AddBook = () => {
   const history=useNavigate()
   const[inputs,setInputs]=useState({
@@ -28,7 +29,7 @@ const AddBook = () => {
   }
 
   const sendRequest=async()=>{
-     await axios.post("http://localhost:6500/books",{
+     await axios.post("/books",{
       name:String(inputs.name),
       author:String(inputs.author),
       description:String(inputs.description),
